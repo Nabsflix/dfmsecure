@@ -27,6 +27,7 @@ function validatePayload(payload) {
 }
 
 exports.handler = async (event, context) => {
+  console.log('📝 Création d\'un secret...');
   await cleanupExpired();
 
   const headers = {
@@ -95,6 +96,9 @@ exports.handler = async (event, context) => {
 
     const id = generateId();
     const expiresAt = Date.now() + (ttlNum * 1000);
+    
+    console.log(`🆔 ID généré: ${id}`);
+    console.log(`⏰ Expiration: ${new Date(expiresAt).toISOString()}`);
 
     await setSecret(id, {
       payload,
@@ -103,13 +107,16 @@ exports.handler = async (event, context) => {
       createdAt: Date.now(),
     });
 
+    console.log(`✅ Secret créé avec succès: ${id.substring(0, 8)}...`);
+
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({ id }),
     };
   } catch (error) {
-    console.error('Erreur:', error);
+    console.error('❌ Erreur lors de la création:', error);
+    console.error('Stack:', error.stack);
     return {
       statusCode: 500,
       headers,
