@@ -2,6 +2,21 @@
 
 Application web professionnelle pour partager des mots de passe et informations sensibles de manière sécurisée avec vos clients.
 
+## 🚀 Déploiement rapide
+
+### Sur VM Linux
+👉 **Guide complet :** [INSTALLATION_COMPLETE.md](INSTALLATION_COMPLETE.md)
+
+**Installation en 3 commandes :**
+```bash
+git clone https://github.com/Nabsflix/dfmsecure.git
+cd dfmsecure && chmod +x *.sh
+sudo ./install.sh
+```
+
+### Sur Netlify
+👉 **Guide :** [NETLIFY_DEPLOY.md](NETLIFY_DEPLOY.md)
+
 ## ✨ Fonctionnalités
 
 - 🔐 **Chiffrement côté navigateur** - Le serveur ne voit jamais les données en clair
