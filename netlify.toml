@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Rediriger les routes API vers les fonctions Netlify
+[[redirects]]
+  from = "/api/secret"
+  to = "/.netlify/functions/secret"
+  status = 200
+
+[[redirects]]
+  from = "/api/secret/:id"
+  to = "/.netlify/functions/secret-get/:id"
+  status = 200
+
+# Rediriger toutes les routes vers index.html pour le SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
