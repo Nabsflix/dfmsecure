@@ -1,0 +1,27 @@
+{
+  "name": "dfm-secure",
+  "version": "1.0.0",
+  "description": "Application de partage sécurisé de mots de passe avec chiffrement côté client",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "password",
+    "security",
+    "encryption",
+    "secure-sharing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

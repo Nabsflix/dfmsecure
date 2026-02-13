@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure - Partage sécurisé de mots de passe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg"></div>
+    
+    <div class="topbar">
+        <div class="brand">
+            <img src="assets/logo.png" alt="Secure" class="brand__logo">
+            <span class="brand__name">Secure</span>
+        </div>
+    </div>
+
+    <div class="layout">
+        <div class="left">
+            <h1>Envoyez des mots de passe en toute sécurité.</h1>
+            <p>
+                Chiffrement côté navigateur. Le serveur ne stocke que du chiffré. 
+                Lien à usage unique avec expiration (1h, 1j ou 1 semaine).
+            </p>
+            <div class="note">
+                <div class="note__dot"></div>
+                <div class="note__text">
+                    Astuce : envoyez la phrase de déchiffrement par un autre canal (SMS / appel).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab tab--active" data-tab="create">Créer</button>
+                <button class="tab" data-tab="read">Lire</button>
+            </div>
+
+            <!-- Panel Créer -->
+            <div id="create" class="panel panel--active">
+                <label for="secret" class="label">Secret</label>
+                <textarea 
+                    id="secret" 
+                    class="textarea" 
+                    placeholder="Collez ici votre mot de passe / clé / info sensible..."
+                    rows="5"
+                ></textarea>
+
+                <label for="ttl" class="label">Expiration</label>
+                <select id="ttl" class="select">
+                    <option value="3600">1 heure</option>
+                    <option value="86400">1 jour</option>
+                    <option value="604800">1 semaine</option>
+                </select>
+
+                <label for="pass" class="label">Phrase de déchiffrement</label>
+                <input 
+                    type="password" 
+                    id="pass" 
+                    class="input" 
+                    placeholder="Choisissez une phrase"
+                    autocomplete="off"
+                >
+
+                <button id="btnCreate" class="btn">Créer un lien</button>
+
+                <div id="errCreate" class="error hidden"></div>
+
+                <div id="out" class="out hidden">
+                    <div class="small">Lien généré :</div>
+                    <div class="copyrow">
+                        <input 
+                            type="text" 
+                            class="input" 
+                            id="link" 
+                            readonly
+                            value=""
+                        >
+                        <button id="btnCopy" class="btn btn--ghost">Copier</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Lire -->
+            <div id="read" class="panel">
+                <label for="passRead" class="label">Phrase de déchiffrement</label>
+                <input 
+                    type="password" 
+                    id="passRead" 
+                    class="input" 
+                    placeholder="Entrez la phrase de déchiffrement"
+                    autocomplete="off"
+                >
+
+                <button id="btnRead" class="btn">Lire</button>
+
+                <div id="errRead" class="error hidden"></div>
+
+                <div id="plainWrap" class="hidden">
+                    <label for="plain" class="label">Secret déchiffré</label>
+                    <textarea 
+                        id="plain" 
+                        class="textarea" 
+                        rows="5"
+                        readonly
+                    ></textarea>
+                    <div class="copyrow">
+                        <button id="btnCopyPlain" class="btn btn--ghost">Copier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
