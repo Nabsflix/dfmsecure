@@ -75,7 +75,7 @@ exports.handler = async (event, context) => {
     }
 
     const ttlNum = parseInt(ttl);
-    const validTTLs = [3600, 86400, 604800];
+    const validTTLs = [1800, 3600, 86400, 604800]; // 30min, 1h, 1j, 1 semaine
     if (!validTTLs.includes(ttlNum)) {
       return {
         statusCode: 400,

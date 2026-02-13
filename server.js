@@ -131,7 +131,7 @@ app.post('/api/secret', createLimiter, (req, res) => {
 
     // Validation du TTL
     const ttlNum = parseInt(ttl);
-    const validTTLs = [3600, 86400, 604800]; // 1h, 1j, 1 semaine
+    const validTTLs = [1800, 3600, 86400, 604800]; // 30min, 1h, 1j, 1 semaine
     if (!validTTLs.includes(ttlNum)) {
       stats.errors++;
       return res.status(400).json({ error: 'TTL invalide' });
