@@ -186,17 +186,29 @@ $('btnRead').addEventListener('click', async () => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 30000);
     
-    const r = await fetch(`/api/secret/${encodeURIComponent(id)}`, {
+    const url = `/api/secret/${encodeURIComponent(id)}`;
+    console.log('Requête vers:', url);
+    
+    const r = await fetch(url, {
       signal: controller.signal
     });
     
     clearTimeout(timeoutId);
     
-    const j = await r.json();
     if (!r.ok) {
-      if (j.error === 'not_found') throw new Error('not_found');
-      throw new Error(j.error || 'error');
+      const errorText = await r.text();
+      let errorData;
+      try {
+        errorData = JSON.parse(errorText);
+      } catch (e) {
+        throw new Error(`Erreur HTTP ${r.status}: ${errorText}`);
+      }
+      
+      if (errorData.error === 'not_found') throw new Error('not_found');
+      throw new Error(errorData.error || 'error');
     }
+    
+    const j = await r.json();
     const plain = await decryptSecret(j.payload, pass);
     $('plain').value = plain;
     show($('plainWrap'));
