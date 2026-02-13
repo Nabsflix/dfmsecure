@@ -41,7 +41,16 @@ body{
   justify-content:space-between;
 }
 .brand{display:flex; align-items:center; gap:10px}
-.brand__logo{width:64px; height:64px; object-fit:contain}
+.brand__logo{
+  width:90px; 
+  height:90px; 
+  object-fit:contain;
+  filter: blur(0.5px) drop-shadow(0 0 8px rgba(107,102,255,.6)) drop-shadow(0 0 16px rgba(107,102,255,.4));
+  transition: filter 0.3s ease;
+}
+.brand__logo:hover{
+  filter: blur(0px) drop-shadow(0 0 12px rgba(107,102,255,.8)) drop-shadow(0 0 24px rgba(107,102,255,.6));
+}
 .brand__name{
   font-weight:900; 
   letter-spacing:.3px; 
